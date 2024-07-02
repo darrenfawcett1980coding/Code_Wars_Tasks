@@ -117,18 +117,37 @@ const flickThr = flickSwitchRedo(['bike', 'jar', 'flick', 'sheep', 'flick']);
 
 ///////___************************************************************___//////
 
-function firstNonRepeatingLetterRedo(s) {}
+function firstNonRepeatingLetterRedo(str) {
+  if (str === '') return 'none'
+  const letters = str.split('').reduce((acc, i) => {
+    const iLow = i.toLowerCase()
+    acc[iLow] = (acc[iLow] || 0) + 1;
+    return acc;
+  }, {});
+  // console.log(letters);
+
+  let result = 'none'
+  for (const i of str) {
+    if (letters[i.toLowerCase()] === 1) {
+      result = i;
+      break;
+    }
+    // return false
+  }
+
+  return result;
+}
 
 // NOTES: did all with no help. struggled with the for loop
 
-// firstNonRepeatingLetterRedo('stress');
+firstNonRepeatingLetterRedo('stress');
 
-// console.log(firstNonRepeatingLetterRedo('stress')); // answer = 't'
-// console.log(firstNonRepeatingLetterRedo('')); // answer = ''
-// console.log(firstNonRepeatingLetterRedo('aabbcc')); // answer = 'a'
-// console.log(firstNonRepeatingLetterRedo('todo')); // answer = 't'
-// console.log(firstNonRepeatingLetterRedo('Cchallenge')); // answer = 'h'
-// console.log(firstNonRepeatingLetterRedo('rrThhgg')); // answer = 't'
+console.log(firstNonRepeatingLetterRedo('stress')); // answer = 't'
+console.log(firstNonRepeatingLetterRedo('')); // answer = none
+console.log(firstNonRepeatingLetterRedo('aabbcc')); // answer = none
+console.log(firstNonRepeatingLetterRedo('todo')); // answer = 't'
+console.log(firstNonRepeatingLetterRedo('Cchallenge')); // answer = 'h'
+console.log(firstNonRepeatingLetterRedo('rrThhgg')); // answer = 'T'
 
 ///////___************************************************************___//////
 
@@ -203,27 +222,28 @@ function singleNumberRedo(num) {}
 ///////___************************************************************___//////
 
 function compRedo(array1, array2) {
-  if (!array1 || !array2 || array1.length !== array2.length) return false
+  if (!array1 || !array2 || array1.length !== array2.length) return false;
   const arr1 = array1.sort((a, b) => a - b);
-  const arr2 = array2.map((n) => Math.sqrt(n)).sort((a, b) => a - b) ;
+  const arr2 = array2.map((n) => Math.sqrt(n)).sort((a, b) => a - b);
   // console.log(arr1);
   // console.log(arr2);
 
   for (let i = 0; i < arr1.length; i++) {
     if (arr1[i] !== arr2[i]) {
-      return false
+      return false;
     }
   }
-  return true
+  return true;
 }
 
 // Test cases
 const compArr11 = [121, 144, 19, 161, 19, 144, 19, 11];
 const compArr22 = [121, 14641, 20736, 361, 25921, 361, 20736, 361];
 const compArr33 = [121, 14641, 20736, 361, 25921, 361, 20736, 484];
-const compArr44 = [784, 14641, 20736, 361, 53824, 361, 529, 484];4
-const compArr55 = []
-const compArr66 = null
+const compArr44 = [784, 14641, 20736, 361, 53824, 361, 529, 484];
+4;
+const compArr55 = [];
+const compArr66 = null;
 
 compRedo(compArr11, compArr22);
 // console.log(compRedo(compArr11, compArr22)); // true
